@@ -1,0 +1,23 @@
+{
+  "name": "bootstrap-sass-gulp-browsersync",
+  "version": "0.1.0",
+  "description": "A starting point for web development with Bootstrap 3, Sass, Gulp & BrowserSync",
+  "main": "gulpfile.js",
+  "author": "discardedbacon@fastmail.fm",
+  "repository" :
+    { "type" : "git", "url" : "http://github.com/discardedbacon/bootstrap-sass-gulp-browsersync"
+    },
+  "devDependencies": {
+    "browser-sync": "^1.1.2",
+    "del": "^0.1.1",
+    "gulp": "^3.8.5",
+    "gulp-changed": "^1.0.0",
+    "gulp-jsmin": "^0.1.4",
+    "gulp-minify-css": "^0.3.7",
+    "gulp-plumber": "^0.6.4",
+    "gulp-rename": "^1.2.0",
+    "gulp-ruby-sass": "^0.5.0",
+    "gulp-include":"^1.0.1",
+    "run-sequence": "^0.3.6"
+  }
+}
