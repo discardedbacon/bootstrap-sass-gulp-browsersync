@@ -89,6 +89,11 @@ gulp.task('init:scss', function(){
 	return gulp.src('./bower_components/bootstrap-sass-official/assets/stylesheets/**')
 		.pipe(gulp.dest(bsk.appDir+'/'+bsk.scssDir));
 });
+gulp.task('init:renameSCSS', function(){
+	return gulp.src(bsk.appDir+'/'+bsk.scssDir+'/_bootstrap.scss')
+		.pipe(rename('bootstrap.scss'))
+		.pipe(gulp.dest(bsk.appDir+'/'+bsk.scssDir));
+});
 
 //run page reloading, sass & js minification services
 gulp.task('serve', ['connect'], function(){
@@ -121,7 +126,7 @@ gulp.task('output', function() {
 /* ---- initialization ---- */
 
 gulp.task('init', function() {
-	runSequence(['init:js', 'init:fonts', 'init:scss'], 'js', 'styles', 'serve');
+	runSequence(['init:js', 'init:fonts', 'init:scss'], 'init:renameSCSS', 'js', 'styles', 'serve');
 });
 
 gulp.task('default', function() {
