@@ -28,7 +28,7 @@ var bsk = {
 //uncompressed js folder name
 	jsDir : "javascripts",	
 //font folder name
-	fontsDir : "fonts"	
+	fontsDir : "fonts/bootstrap"	
 }
 
 /* ---- tasks ---- */
