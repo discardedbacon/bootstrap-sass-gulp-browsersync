@@ -70,7 +70,7 @@ gulp.task('connect', function () {
 //move bootstrap3 assets from 'bower' to 'app'
 // - js
 gulp.task('init:js', function(){
-	return gulp.src('./bower_components/bootstrap-sass-official/assets/javascripts/**')
+	return gulp.src('./bower_components/bootstrap-sass/assets/javascripts/**')
 		.pipe(gulp.dest(bsk.appDir+"/"+bsk.jsDir))
 		.on('end', function(){
 		return gulp.src('./bower_components/jquery/dist/jquery.min.js')
@@ -80,13 +80,13 @@ gulp.task('init:js', function(){
 
 //- fonts
 gulp.task('init:fonts', function(){
-	return gulp.src('./bower_components/bootstrap-sass-official/assets/fonts/bootstrap/**')
+	return gulp.src('./bower_components/bootstrap-sass/assets/fonts/bootstrap/**')
 		.pipe(gulp.dest(bsk.appDir+'/'+bsk.fontsDir));
 });
 
 //- scss
 gulp.task('init:scss', function(){
-	return gulp.src('./bower_components/bootstrap-sass-official/assets/stylesheets/**')
+	return gulp.src('./bower_components/bootstrap-sass/assets/stylesheets/**')
 		.pipe(gulp.dest(bsk.appDir+'/'+bsk.scssDir));
 });
 gulp.task('init:renameSCSS', function(){
