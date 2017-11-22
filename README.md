@@ -61,7 +61,7 @@ To use the components:
 
 Open **app/javascripts/bootstrap-sprockets.js** and apped .js to file names you would like to use.
 
-Foe example,
+For example,
 
 `//= require ./bootstrap/tooltip`
 
