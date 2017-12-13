@@ -10,7 +10,8 @@ var gulp = require('gulp'),
 	changed = require('gulp-changed'),
 	del = require('del'),
 	include = require('gulp-include'),
-	plumber = require('gulp-plumber');
+	plumber = require('gulp-plumber'),
+	gzip = require('gulp-gzip');
 
 /* ---- file paths ----*/
 
@@ -26,9 +27,9 @@ var bsk = {
 //minified js folder name
 	minifiedJsDir : "js",
 //uncompressed js folder name
-	jsDir : "javascripts",	
+	jsDir : "javascripts",
 //font folder name
-	fontsDir : "fonts/bootstrap"	
+	fontsDir : "fonts/bootstrap"
 }
 
 /* ---- tasks ---- */
@@ -43,18 +44,28 @@ gulp.task('styles', function() {
 		.pipe(rename({suffix: '.min'}))
 		.pipe(minifycss())
 		.pipe(gulp.dest(bsk.appDir+'/'+bsk.cssDir))
-		.pipe(reload({stream:true}));
+		.on('end', function(){
+			gulp.src(bsk.appDir+'/'+bsk.cssDir+'/*.min.css')
+			.pipe(gzip())
+			.pipe(gulp.dest(bsk.appDir+'/'+bsk.cssDir))
+			.pipe(reload({stream:true}))
+		});
 });
 
 //minify js
 gulp.task('js', function () {
     return gulp.src(bsk.appDir+'/'+bsk.jsDir+'/*.js')
-    	.pipe(include())
+		.pipe(include())
         .pipe(jsmin())
         .pipe(rename({suffix: '.min'}))
-        .pipe(changed(bsk.appDir+'/'+bsk.jsDir+'/*.js'))
+        //.pipe(changed(bsk.appDir+'/'+bsk.jsDir+'/*.js'))
 		.pipe(gulp.dest(bsk.appDir+'/'+bsk.minifiedJsDir))
-		.pipe(reload({stream:true}));
+		.on('end', function(){
+			gulp.src(bsk.appDir+'/'+bsk.minifiedJsDir+'/*.min.js')
+			.pipe(gzip())
+			.pipe(gulp.dest(bsk.appDir+'/'+bsk.minifiedJsDir))
+			.pipe(reload({stream:true}))
+		});
 });
 
 //launch web server
@@ -70,7 +81,7 @@ gulp.task('connect', function () {
 //move bootstrap3 assets from 'bower' to 'app'
 // - js
 gulp.task('init:js', function(){
-	return gulp.src('./bower_components/bootstrap-sass/assets/javascripts/**')
+	return gulp.src(['./bower_components/bootstrap-sass/assets/javascripts/**', '!./bower_components/bootstrap-sass/assets/javascripts/*.min.js'])
 		.pipe(gulp.dest(bsk.appDir+"/"+bsk.jsDir))
 		.on('end', function(){
 		return gulp.src('./bower_components/jquery/dist/jquery.min.js')

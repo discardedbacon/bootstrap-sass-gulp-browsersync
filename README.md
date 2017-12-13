@@ -1,6 +1,6 @@
 # Bootstrap, Sass, Gulp & BrowserSync
 
-This package of scripts gives you a starting point for building a website with [Bootstrap](http://getbootstrap.com/), [Sass](http://sass-lang.com/) and [Gulp](http://gulpjs.com/). [BrowserSync](http://www.browsersync.io/) built into the package allows you to confirm every code changes in a browser window on the fly. It is hoped to make your workflow faster, and more functionalities will be added until it can be used as a true alternative to [Google Web Starter Kit](https://github.com/google/web-starter-kit).
+This package of scripts gives you a starting point for building a website with [Bootstrap](http://getbootstrap.com/), [Sass](http://sass-lang.com/) and [Gulp](http://gulpjs.com/). [BrowserSync](http://www.browsersync.io/) built into the package allows you to confirm every code changes in a browser window on the fly. It is hoped to make your workflow faster, and more functionalities will be added until it can be used as a true alternative to [Google Web Starter Kit](https://github.com/google/web-starter-kit). Version 0.2.0 includes gulp-gzip to generate gzip files for css and js.
 
 ## Dependencies
 - [Node/NPM](http://nodejs.org/)
@@ -55,13 +55,15 @@ var bsk = {
 
 ### Methods to include Bootstrap's Javascript components
 
-The **app/javascripts/bootstrap/** directory contains Bootstrap's Javascript components for add-on features, such as 'alerts', 'buttons', and 'tooltip'.
+**app/(jsDir)/bootstrap.js** contains all of Bootstrap's JavaScript, concatenated in the correct order.
 
-To use the components:
+If you would like to selectively load the components, such as 'alerts', 'buttons', and 'tooltip', you can require bootstrap-sprockets.
 
-Open **app/javascripts/bootstrap-sprockets.js** and apped .js to file names you would like to use.
+To use the bootstrap-sprockets:
 
-Foe example,
+Open **app/(jsDir)/bootstrap-sprockets.js** and apped .js to file names you would like to use.
+
+For example,
 
 `//= require ./bootstrap/tooltip`
 
@@ -69,7 +71,7 @@ should be
 
 `//= require ./bootstrap/tooltip.js`
 
-The conpenent's codes will be inserted into **app/js/bootstrap-sprockets.min.js**. Make sure to include the minified Javascript file in your templates.
+The conpenent's codes will be inserted into **app/(minifiedJsDir)/bootstrap-sprockets.min.js**. Make sure to include the minified Javascript file in your templates.
 
 Refer to the [gulp-include](https://www.npmjs.org/package/gulp-include) page to learn more on how the Javascript files are included.
 
